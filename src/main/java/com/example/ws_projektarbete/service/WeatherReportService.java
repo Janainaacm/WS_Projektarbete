@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientResponseException;
 
+import java.io.EOFException;
+
 @Service
 public class WeatherReportService {
 
@@ -19,18 +21,18 @@ public class WeatherReportService {
     }
 
     public Weather getWeatherReportByCity(String city) {
-        try {
-            return restClient.get()
-                    .uri(uriBuilder -> uriBuilder
-                            .queryParam("key", apiKey)
-                            .queryParam("city", city)
-                            .build())
-                    .retrieve()
-                    .body(Weather.class);
-        } catch (RestClientResponseException e) {
+        return restClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .queryParam("key", apiKey)
+                        .queryParam("city", city)
+                        .build())
+                .retrieve()
+                .onStatus(
+                        status -> status.value() == 404, (request, response) -> {
+                            throw new RuntimeException(
 
-            System.err.println("Error: " + e.getRawStatusCode() + " - " + e.getResponseBodyAsString());
-            throw e;
-        }
+                            );
+                        })
+                .body(Weather.class);
     }
 }
