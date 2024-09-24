@@ -1,9 +1,8 @@
 package com.example.ws_projektarbete.controller;
 
 import com.example.ws_projektarbete.exception.CityNotFoundException;
-import com.example.ws_projektarbete.model.WeatherCity;
+import com.example.ws_projektarbete.model.*;
 import com.example.ws_projektarbete.repository.City;
-import com.example.ws_projektarbete.model.Weather;
 import com.example.ws_projektarbete.repository.CityRepository;
 import com.example.ws_projektarbete.service.WeatherReportService;
 import org.springframework.http.HttpStatus;
@@ -25,18 +24,53 @@ public class WeatherController {
         this.weatherReportService = weatherReportService;
     }
 
-    @PutMapping("/weather/{city}")
-    public ResponseEntity<Weather> getWeatherReportByCity(@PathVariable("city") String city) {
-        try {
-            var response = weatherReportService.getWeatherReportByCity(city);
-            if (response == null) {
-                throw new CityNotFoundException("Weather data for city: " + city + " not found");
-            }
-            return ResponseEntity.ok().body(response);
-        } catch (Exception ex) {
-            throw new CityNotFoundException("City " + city + " not found");
+
+    @GetMapping("/weather/{city}")
+    public ResponseEntity<?> getWeatherReport(
+            @PathVariable("city") String city,
+            @RequestParam(value = "detailed", required = false, defaultValue = "true") boolean detailed) {
+
+        Weather weather = weatherReportService.getWeatherReportByCity(city);
+
+        if (weather == null || weather.getData() == null || weather.getData().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        if (detailed) {
+            return ResponseEntity.ok(weather);
+        } else {
+            List<SimpleObservation> simpleObservations = weather.getData().stream()
+                    .map(observation -> {
+                        SimpleObservation simpleObservation = new SimpleObservation();
+                        simpleObservation.setCityName(observation.getCityName());
+
+                        if (observation.getTemperature() != null) {
+                            simpleObservation.setTemperature(observation.getTemperature());
+                        }
+
+                        WeatherCondition weatherCondition = observation.getWeather();
+                        if (weatherCondition != null && weatherCondition.getDescription() != null) {
+                            simpleObservation.setWeatherDescription(weatherCondition.getDescription());
+                        }
+
+                        return simpleObservation;
+                    })
+                    .filter(obs -> obs.getCityName() != null || obs.getTemperature() != null || obs.getWeatherDescription() != null)
+                    .toList();
+
+            SimpleWeather simpleWeather = new SimpleWeather();
+            simpleWeather.setData(simpleObservations);
+
+            return ResponseEntity.ok(simpleWeather);
         }
     }
+
+
+
+
+
+
+
 
     @GetMapping("/weather/cities")
     public ResponseEntity<List<WeatherCity>> listCities() {
@@ -74,7 +108,7 @@ public class WeatherController {
     }
 
     @DeleteMapping("/delete-city/{cityName}")
-    public ResponseEntity<Void> deleteCity(@PathVariable("cityName") String cityName) {
+    public ResponseEntity<String> deleteCity(@PathVariable("cityName") String cityName) {
         try {
             Optional<City> city = cityRepository.findByName(cityName);
             if (!city.isPresent()) {
@@ -82,7 +116,7 @@ public class WeatherController {
             }
 
             cityRepository.deleteByCityName(cityName);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok("City deleted successfully");
         } catch (CityNotFoundException ex) {
             throw ex;
         } catch (Exception ex) {

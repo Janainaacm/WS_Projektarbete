@@ -4,56 +4,56 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Observation {
 
-    @JsonProperty("sunrise")
-    private String sunrise;
+        @JsonProperty("sunrise")
+        private String sunrise;
 
-    @JsonProperty("sunset")
-    private String sunset;
+        @JsonProperty("sunset")
+        private String sunset;
 
-    @JsonProperty("timezone")
-    private String timezone;
+        @JsonProperty("timezone")
+        private String timezone;
 
-    @JsonProperty("city_name")
-    private String cityName;
+        @JsonProperty("city_name")
+        private String cityName;
 
-    @JsonProperty("country_code")
-    private String countryCode;
+        @JsonProperty("country_code")
+        private String countryCode;
 
-    @JsonProperty("wind_spd")
-    private double windSpeed;
+        @JsonProperty("wind_spd")
+        private Double windSpeed;
 
-    @JsonProperty("gust")
-    private double windGust;
+        @JsonProperty("gust")
+        private Double windGust;
 
-    @JsonProperty("wind_dir")
-    private double windDirection;
+        @JsonProperty("wind_dir")
+        private Double windDirection;
 
-    @JsonProperty("temp")
-    private double temperature;
+        @JsonProperty("temp")
+        private Double temperature;
 
-    @JsonProperty("app_temp")
-    private double apparentTemperature;
+        @JsonProperty("app_temp")
+        private Double apparentTemperature;
 
-    @JsonProperty("rh")
-    private double relativeHumidity;
+        @JsonProperty("rh")
+        private Double relativeHumidity;
 
-    @JsonProperty("clouds")
-    private double cloudCoverage;
+        @JsonProperty("clouds")
+        private Double cloudCoverage;
 
-    @JsonProperty("pod")
-    private String partOfDay;
+        @JsonProperty("pod")
+        private String partOfDay;
 
-    @JsonProperty("weather")
-    private WeatherCondition weather;
+        @JsonProperty("weather")
+        private WeatherCondition weather;
 
-    @JsonProperty("vis")
-    private double visibility;
+        @JsonProperty("vis")
+        private Double visibility;
 
-    @JsonProperty("snow")
-    private double snowfall;
+        @JsonProperty("snow")
+        private Double snowfall;
 
-    @JsonProperty("uv")
-    private double uvIndex;
+        @JsonProperty("uv")
+        private Double uvIndex;
 
     public String getSunrise() {
         return sunrise;
@@ -95,59 +95,59 @@ public class Observation {
         this.countryCode = countryCode;
     }
 
-    public double getWindSpeed() {
+    public Double getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(double windSpeed) {
+    public void setWindSpeed(Double windSpeed) {
         this.windSpeed = windSpeed;
     }
 
-    public double getWindGust() {
+    public Double getWindGust() {
         return windGust;
     }
 
-    public void setWindGust(double windGust) {
+    public void setWindGust(Double windGust) {
         this.windGust = windGust;
     }
 
-    public double getWindDirection() {
+    public Double getWindDirection() {
         return windDirection;
     }
 
-    public void setWindDirection(double windDirection) {
+    public void setWindDirection(Double windDirection) {
         this.windDirection = windDirection;
     }
 
-    public double getTemperature() {
+    public Double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(double temperature) {
+    public void setTemperature(Double temperature) {
         this.temperature = temperature;
     }
 
-    public double getApparentTemperature() {
+    public Double getApparentTemperature() {
         return apparentTemperature;
     }
 
-    public void setApparentTemperature(double apparentTemperature) {
+    public void setApparentTemperature(Double apparentTemperature) {
         this.apparentTemperature = apparentTemperature;
     }
 
-    public double getRelativeHumidity() {
+    public Double getRelativeHumidity() {
         return relativeHumidity;
     }
 
-    public void setRelativeHumidity(double relativeHumidity) {
+    public void setRelativeHumidity(Double relativeHumidity) {
         this.relativeHumidity = relativeHumidity;
     }
 
-    public double getCloudCoverage() {
+    public Double getCloudCoverage() {
         return cloudCoverage;
     }
 
-    public void setCloudCoverage(double cloudCoverage) {
+    public void setCloudCoverage(Double cloudCoverage) {
         this.cloudCoverage = cloudCoverage;
     }
 
@@ -167,27 +167,27 @@ public class Observation {
         this.weather = weather;
     }
 
-    public double getVisibility() {
+    public Double getVisibility() {
         return visibility;
     }
 
-    public void setVisibility(double visibility) {
+    public void setVisibility(Double visibility) {
         this.visibility = visibility;
     }
 
-    public double getSnowfall() {
+    public Double getSnowfall() {
         return snowfall;
     }
 
-    public void setSnowfall(double snowfall) {
+    public void setSnowfall(Double snowfall) {
         this.snowfall = snowfall;
     }
 
-    public double getUvIndex() {
+    public Double getUvIndex() {
         return uvIndex;
     }
 
-    public void setUvIndex(double uvIndex) {
+    public void setUvIndex(Double uvIndex) {
         this.uvIndex = uvIndex;
     }
 }
