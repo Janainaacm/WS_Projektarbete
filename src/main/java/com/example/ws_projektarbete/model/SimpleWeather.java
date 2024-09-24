@@ -1,6 +1,7 @@
 package com.example.ws_projektarbete.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class SimpleWeather {

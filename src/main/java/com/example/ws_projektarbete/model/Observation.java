@@ -4,56 +4,56 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Observation {
 
-        @JsonProperty("sunrise")
-        private String sunrise;
+    @JsonProperty("sunrise")
+    private String sunrise;
 
-        @JsonProperty("sunset")
-        private String sunset;
+    @JsonProperty("sunset")
+    private String sunset;
 
-        @JsonProperty("timezone")
-        private String timezone;
+    @JsonProperty("timezone")
+    private String timezone;
 
-        @JsonProperty("city_name")
-        private String cityName;
+    @JsonProperty("city_name")
+    private String cityName;
 
-        @JsonProperty("country_code")
-        private String countryCode;
+    @JsonProperty("country_code")
+    private String countryCode;
 
-        @JsonProperty("wind_spd")
-        private Double windSpeed;
+    @JsonProperty("wind_spd")
+    private Double windSpeed;
 
-        @JsonProperty("gust")
-        private Double windGust;
+    @JsonProperty("gust")
+    private Double windGust;
 
-        @JsonProperty("wind_dir")
-        private Double windDirection;
+    @JsonProperty("wind_dir")
+    private Double windDirection;
 
-        @JsonProperty("temp")
-        private Double temperature;
+    @JsonProperty("temp")
+    private Double temperature;
 
-        @JsonProperty("app_temp")
-        private Double apparentTemperature;
+    @JsonProperty("app_temp")
+    private Double apparentTemperature;
 
-        @JsonProperty("rh")
-        private Double relativeHumidity;
+    @JsonProperty("rh")
+    private Double relativeHumidity;
 
-        @JsonProperty("clouds")
-        private Double cloudCoverage;
+    @JsonProperty("clouds")
+    private Double cloudCoverage;
 
-        @JsonProperty("pod")
-        private String partOfDay;
+    @JsonProperty("pod")
+    private String partOfDay;
 
-        @JsonProperty("weather")
-        private WeatherCondition weather;
+    @JsonProperty("weather")
+    private WeatherCondition weather;
 
-        @JsonProperty("vis")
-        private Double visibility;
+    @JsonProperty("vis")
+    private Double visibility;
 
-        @JsonProperty("snow")
-        private Double snowfall;
+    @JsonProperty("snow")
+    private Double snowfall;
 
-        @JsonProperty("uv")
-        private Double uvIndex;
+    @JsonProperty("uv")
+    private Double uvIndex;
 
     public String getSunrise() {
         return sunrise;
