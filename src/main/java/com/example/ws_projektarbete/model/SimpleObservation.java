@@ -13,7 +13,6 @@ public class SimpleObservation {
     @JsonProperty("weather_description")
     private String weatherDescription;
 
-    // Getters and setters
     public String getCityName() {
         return cityName;
     }

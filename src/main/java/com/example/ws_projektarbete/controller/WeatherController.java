@@ -24,8 +24,7 @@ public class WeatherController {
         this.weatherReportService = weatherReportService;
     }
 
-
-    @GetMapping("/weather/{city}")
+    @PutMapping("/weather/{city}")
     public ResponseEntity<?> getWeatherReport(
             @PathVariable("city") String city,
             @RequestParam(value = "detailed", required = false, defaultValue = "true") boolean detailed) {
@@ -64,13 +63,6 @@ public class WeatherController {
             return ResponseEntity.ok(simpleWeather);
         }
     }
-
-
-
-
-
-
-
 
     @GetMapping("/weather/cities")
     public ResponseEntity<List<WeatherCity>> listCities() {
@@ -111,7 +103,7 @@ public class WeatherController {
     public ResponseEntity<String> deleteCity(@PathVariable("cityName") String cityName) {
         try {
             Optional<City> city = cityRepository.findByName(cityName);
-            if (!city.isPresent()) {
+            if (city.isEmpty()) {
                 throw new CityNotFoundException("City " + cityName + " not found");
             }
 

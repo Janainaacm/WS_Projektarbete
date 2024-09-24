@@ -4,9 +4,6 @@ import com.example.ws_projektarbete.model.Weather;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
-import org.springframework.web.client.RestClientResponseException;
-
-import java.io.EOFException;
 
 @Service
 public class WeatherReportService {
@@ -30,7 +27,6 @@ public class WeatherReportService {
                 .onStatus(
                         status -> status.value() == 404, (request, response) -> {
                             throw new RuntimeException(
-
                             );
                         })
                 .body(Weather.class);

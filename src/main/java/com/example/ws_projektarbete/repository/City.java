@@ -1,7 +1,6 @@
 package com.example.ws_projektarbete.repository;
 
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Configuration;
 
 @Entity
 public class City {
@@ -12,7 +11,6 @@ public class City {
 
     @Column(name = "name", nullable = false)
     private String name;
-
 
     public City() {
     }
@@ -38,4 +36,3 @@ public class City {
     }
 
 }
-
