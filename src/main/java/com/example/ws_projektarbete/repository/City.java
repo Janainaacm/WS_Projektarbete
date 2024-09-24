@@ -1,6 +1,7 @@
 package com.example.ws_projektarbete.repository;
 
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Configuration;
 
 @Entity
 public class City {
@@ -9,7 +10,7 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
 

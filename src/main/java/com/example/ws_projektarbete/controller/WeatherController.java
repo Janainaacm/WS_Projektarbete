@@ -53,19 +53,11 @@ public class WeatherController {
         return "redirect:/cities";
     }
 
-    @PutMapping("/search-city")
-    public String searchCity(@RequestParam String cityName, Model model) {
-        Weather weatherResponse = weatherReportService.getWeatherReportByCity(cityName);
-        if (weatherResponse != null && !weatherResponse.getData().isEmpty()) {
-            City city = new City(cityName);
-            cityRepository.save(city);
-        }
-        return "redirect:/cities";
+
+    @DeleteMapping("/delete-city/{cityName}")
+    public ResponseEntity<Void> deleteCity(@PathVariable("cityName") String cityName) {
+        cityRepository.deleteByCityName(cityName);
+        return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/delete-city/{id}")
-    public String deleteCity(@PathVariable Long id) {
-        cityRepository.deleteById(id);
-        return "redirect:/cities";
-    }
 }
